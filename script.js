@@ -49,39 +49,51 @@ function hideAllSections() {
   // }
   
   // Function to create falling hearts
-  function createFallingHearts() {
-    var heartContainer = document.getElementById('letter-section');
-    heartContainer.style.position = 'relative';
+ // Function to show the letter section
+function showLetter() {
+  hideAllSections();
+  const letterSection = document.getElementById('letter-section');
+  letterSection.style.display = 'block';
+
+  // Trigger yellow sparkles/flowers instead of hearts
+  createFallingEmojis(); 
+}
+
+// Function to create falling flowers/sparkles (Replaces Hearts)
+function createFallingEmojis() {
+  var container = document.getElementById('letter-section');
+  container.style.position = 'relative';
   
-    for (var i = 0; i < 20; i++) {
-      var heart = document.createElement('div');
-      heart.className = 'falling-heart';
-      heart.style.left = Math.random() * window.innerWidth + 'px';
-      heart.style.top = 0; // Add this line
-      heart.style.animationDuration = Math.random() * 2 + 3 + 's';
-      heart.style.position = 'absolute';
-      heartContainer.appendChild(heart);
-  
-      heart.addEventListener('animationend', function() {
-        this.remove();
-      });
-    }
+  // We use yellow-themed emojis to match the new vibe
+  const emojis = ['💐', '✨', '🌼', '💛'];
+
+  for (var i = 0; i < 20; i++) {
+    var emoji = document.createElement('div');
+    emoji.className = 'falling-emoji'; // Change class name in CSS too
+    emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+    
+    emoji.style.left = Math.random() * window.innerWidth + 'px';
+    emoji.style.position = 'absolute';
+    emoji.style.top = '-20px';
+    emoji.style.fontSize = '24px';
+    emoji.style.animation = `fall ${Math.random() * 2 + 3}s linear forwards`;
+    
+    container.appendChild(emoji);
+
+    emoji.addEventListener('animationend', function() {
+      this.remove();
+    });
   }
-  
-  
-  
+}
   
   
   
   
   // Function to show the letter section
-  function showLetter() {
-    hideAllSections();
-    document.getElementById('letter-section').style.display = 'block';
-  
-    // Create falling hearts after a slight delay
-    setTimeout(createFallingHearts, 100);
-  }
+document.getElementById('letter-link').addEventListener('click', function(e) {
+  e.preventDefault(); // Prevents page jump
+  showLetter(); 
+});
   
   
   // Call showTimeline when the page loads
@@ -190,4 +202,31 @@ function hideAllSections() {
   }
   
   
-  
+  function acceptApology() {
+    const btn = document.getElementById('acceptButton');
+    const display = document.getElementById('emoji-display');
+    const responseCard = document.getElementById('tillu-response');
+    
+    // 1. Change the mood
+    display.innerText = "😎✨"; 
+    
+    // 2. Hide the button and show the reply
+    btn.style.display = 'none';
+    responseCard.style.display = 'block';
+    
+    // 3. Trigger a little surprise alert
+    setTimeout(() => {
+        alert("The Grumpiness Meter has reached 0%. Peace has been restored to the universe.");
+    }, 500);
+}
+
+document.getElementById('letter-link').addEventListener('click', function(e) {
+    e.preventDefault();
+    hideAll(); // Your function that hides other sections
+    document.getElementById('letter-section').style.display = 'block';
+    
+    // Trigger the yellow flower/sparkle effect we built earlier
+    if(typeof createFallingEmojis === "function") {
+        createFallingEmojis(); 
+    }
+});
