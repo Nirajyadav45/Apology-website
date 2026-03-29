@@ -230,3 +230,22 @@ document.getElementById('letter-link').addEventListener('click', function(e) {
         createFallingEmojis(); 
     }
 });
+
+function showVideo() {
+    hideAllSections();
+    const videoSec = document.getElementById('video-section');
+    videoSec.style.display = 'block';
+    
+    // Optional: Add a playful alert before they click
+    setTimeout(() => {
+        alert("Warning: This video contains 100% accurate footage of our daily interactions. Proceed with caution!");
+    }, 300);
+}
+
+// Ensure your hideAllSections function includes the video-section
+function hideAllSections() {
+    var sections = document.querySelectorAll('.section');
+    sections.forEach(function(section) {
+        section.style.display = 'none';
+    });
+}

@@ -501,3 +501,21 @@ h3 {
     opacity: 0;
   }
 }
+
+.surprise-btn {
+    background-color: #fbc02d;
+    color: #5d4037;
+    padding: 15px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    transition: 0.4s;
+    box-shadow: 0 4px 15px rgba(251, 192, 45, 0.3);
+}
+
+.surprise-btn:hover {
+    transform: scale(1.1) rotate(-2deg);
+    background-color: #fdd835;
+    box-shadow: 0 6px 20px rgba(251, 192, 45, 0.5);
+}
